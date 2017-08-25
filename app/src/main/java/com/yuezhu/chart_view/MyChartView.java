@@ -59,7 +59,6 @@ public class MyChartView extends View {
     private PopupWindow mPopWin;
 
 
-
     public MyChartView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         init();
@@ -312,6 +311,7 @@ public class MyChartView extends View {
                         mScaleValuePaint);
             }
         }
+
     }
 
     /**
@@ -329,6 +329,7 @@ public class MyChartView extends View {
                         , startPointX + i * xScale, yLength + startPointY, mBackColorPaint);
             }
         }
+
     }
 
     /**
@@ -348,7 +349,7 @@ public class MyChartView extends View {
         startPointX = xScale / 2;        //开始绘图的X坐标
         startPointY = yScale / 2;        //开始绘图的Y坐标
         xLength = 6.5f * xScale;         //X轴长度
-        yLength = 6.5f * yScale;         //Y轴长度
+        yLength = 5.5f * yScale;         //Y轴长度
 
         float chartLineStrokeWidth = xScale / 50;   //图表线条的宽度
         coordTextSize = xScale / 5;  //坐标刻度文字的大小
@@ -358,10 +359,12 @@ public class MyChartView extends View {
         mScaleLinePaint.setStrokeWidth(chartLineStrokeWidth);
         mScaleLinePaint.setColor(0xFFDEDED8);
         mScaleValuePaint.setColor(0xFF999999);
-        mScaleLinePaint.setTextSize(coordTextSize);
+        mScaleValuePaint.setTextSize(coordTextSize);
         mDataLinePaint.setStrokeWidth(dataLineStrokeWidth);
         mDataLinePaint.setStrokeCap(Paint.Cap.ROUND);
         mDataLinePaint.setTextSize(1.5f * coordTextSize);
+
+
     }
 
     /**
@@ -472,4 +475,17 @@ public class MyChartView extends View {
         this.title = title;
     }
 
+    /**
+     * @methodName: fresh
+     * @desc:重新设置x轴刻度、数据、标题后必须刷新重绘
+     * @param: []
+     * @return: void
+     * @author: yuezhusust
+     * @time: 2017/8/25  16:26
+     */
+    public void fresh() {
+        init();
+        requestLayout();
+        postInvalidate();
+    }
 }
